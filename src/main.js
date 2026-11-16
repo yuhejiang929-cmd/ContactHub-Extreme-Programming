@@ -2,6 +2,7 @@ import './styles.css';
 import { findContacts, METHOD_TYPES } from './contacts.js';
 import { createContactStore, STORAGE_KEY } from './storage.js';
 import { contactCard, detailContent, icon, renderMethodFields } from './ui.js';
+import { connectExcelActions } from './excel-ui.js';
 
 const $ = (id) => document.getElementById(id);
 const storage = createContactStore({
@@ -165,6 +166,17 @@ window.addEventListener('storage', (event) => {
   if (event.key === STORAGE_KEY || event.key === null) {
     refresh();
   }
+});
+
+connectExcelActions({
+  store: storage,
+  notify,
+  receiveContacts(updated) {
+    contacts = updated;
+    view = 'all';
+    search.value = '';
+    render();
+  },
 });
 
 refresh();

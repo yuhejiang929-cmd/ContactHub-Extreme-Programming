@@ -42,6 +42,8 @@
       <header class="workspace-header">
         <div><h1 id="view-title">All Contacts</h1></div>
         <div class="toolbar">
+          <button id="import-excel" class="button secondary"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Import Excel</button>
+          <button id="export-excel" class="button secondary"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Export Excel</button>
           <button id="add-contact" class="button primary"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add Contact</button>
         </div>
       </header>
@@ -81,6 +83,25 @@
     <div class="dialog-header"><h2 id="delete-title">Delete contact?</h2><button class="icon-button" type="button" data-close aria-label="Close confirmation"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
     <div class="dialog-content"><p id="delete-message"></p><p id="delete-error" class="feedback error" role="alert" hidden></p></div>
     <footer class="dialog-footer"><button class="button secondary" data-close autofocus>Cancel</button><button class="button danger" id="confirm-delete">Delete Contact</button></footer>
+  </dialog>
+  <dialog id="import-dialog" aria-labelledby="import-title">
+    <div class="dialog-header"><h2 id="import-title">Import Excel</h2><button class="icon-button" type="button" data-close aria-label="Close import"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div class="dialog-content">
+      <label class="file-field"><span>Excel workbook</span><input id="workbook-file" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></label>
+      <p class="muted" id="import-help" role="status"></p>
+      <dl class="import-counts" id="import-counts" aria-live="polite" hidden>
+        <div><dt>Ready</dt><dd id="import-ready">0</dd></div>
+        <div><dt>Skipped</dt><dd id="import-skipped">0</dd></div>
+        <div><dt>Failed</dt><dd id="import-failed">0</dd></div>
+      </dl>
+      <ul id="import-issues" class="import-issues"></ul>
+      <p id="import-error" class="feedback error" role="alert" hidden></p>
+    </div>
+    <footer class="dialog-footer import-footer">
+      <button id="download-template" class="button secondary"><svg class="icon" aria-hidden="true"><use href="#i-sheet"/></svg>Download Template</button>
+      <button class="button secondary" data-close>Cancel</button>
+      <button id="confirm-import" class="button primary" disabled>Import Contacts</button>
+    </footer>
   </dialog>
   <div id="notification" class="notification" role="status" aria-live="polite" hidden></div>
   <script type="module" src="/src/main.js"></script>

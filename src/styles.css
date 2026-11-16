@@ -360,3 +360,14 @@ dialog::backdrop { background: #211a3b80; }
 dialog[open], dialog > form { display: flex; flex-direction: column; min-height: 0; }
 .dialog-header, .dialog-footer { flex: none; }
 .dialog-content { overflow: auto; overscroll-behavior: contain; }
+
+.file-field { display: grid; gap: .55rem; padding: .85rem; border: 1px dashed #c9bce7; border-radius: 10px; background: #f9f7ff; font-size: .88rem; font-weight: 720; }
+.file-field input { width: 100%; color: var(--muted); font-size: .8rem; }
+.file-field input::file-selector-button { padding: .38rem .65rem; margin-right: .6rem; border-radius: 6px; border: 1px solid #d8cbed; background: #fff; color: var(--accent-dark); cursor: pointer; font: inherit; font-weight: 680; }
+.import-counts { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.import-counts div { padding: .62rem .68rem; background: #f5f2fb; border-radius: 9px; }
+.import-counts dt { color: var(--muted); font-size: .77rem; }
+.import-counts dd { margin: .14rem 0 0; font-size: 1.2rem; font-weight: 790; }
+.import-issues { margin: 0; padding-left: 1.1rem; font-size: .83rem; color: var(--danger); }
+.import-issues:empty { display: none; }
+.import-footer #download-template { margin-right: auto; }

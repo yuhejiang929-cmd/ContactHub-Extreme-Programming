@@ -56,3 +56,33 @@ export function findContacts(contacts, { query = '', favoritesOnly = false } = {
       || (phoneQuery && contact.phones.some((phone) => phone.replace(/\D/g, '').includes(digits)));
   });
 }
+
+function contactSignature(contact) {
+  const nfc = (value) => value.normalize('NFC');
+  return JSON.stringify([
+    nfc(contact.name),
+    contact.isFavorite,
+    nfc(contact.notes),
+    ...METHOD_TYPES.map(({ key }) => contact[key].map(nfc).sort()),
+  ]);
+}
+
+export function selectImportAdditions(existing, incoming) {
+  const remaining = new Map();
+  for (const contact of existing) {
+    const signature = contactSignature(contact);
+    remaining.set(signature, (remaining.get(signature) ?? 0) + 1);
+  }
+  const additions = [];
+  for (const input of incoming) {
+    const contact = normalizeContact(input);
+    const signature = contactSignature(contact);
+    const matches = remaining.get(signature) ?? 0;
+    if (matches === 0) {
+      additions.push(contact);
+    } else {
+      remaining.set(signature, matches - 1);
+    }
+  }
+  return { additions, duplicates: incoming.length - additions.length };
+}

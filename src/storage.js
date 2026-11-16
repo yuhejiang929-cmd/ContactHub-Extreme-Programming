@@ -1,4 +1,4 @@
-import { ContactError, createId, normalizeContact } from './contacts.js';
+import { ContactError, createId, normalizeContact, selectImportAdditions } from './contacts.js';
 
 export const STORAGE_KEY = 'contacthub.contacts.v1';
 
@@ -64,6 +64,16 @@ export function createContactStore(storage) {
     },
     toggleFavorite(id) {
       return update(id, (contact) => [{ ...contact, isFavorite: !contact.isFavorite }]);
+    },
+    importContacts(incoming) {
+      const current = read();
+      const { additions, duplicates } = selectImportAdditions(current, incoming);
+      if (!additions.length) {
+        return { contacts: current, added: 0, duplicates };
+      }
+      const ids = new Set(current.map(({ id }) => id));
+      const contacts = write([...current, ...additions.map((contact) => insert(contact, ids))]);
+      return { contacts, added: additions.length, duplicates };
     },
   };
 }
