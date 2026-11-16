@@ -62,5 +62,8 @@ export function createContactStore(storage) {
     remove(id) {
       return update(id, () => []);
     },
+    toggleFavorite(id) {
+      return update(id, (contact) => [{ ...contact, isFavorite: !contact.isFavorite }]);
+    },
   };
 }

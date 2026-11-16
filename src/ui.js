@@ -51,7 +51,15 @@ export function contactCard(contact, handlers) {
   const heading = node('h2');
   heading.append(name);
   identity.append(avatar, heading);
-  header.append(identity);
+  const favorite = node('button', 'icon-button favorite-button');
+  favorite.type = 'button';
+  favorite.dataset.favoriteId = contact.id;
+  favorite.setAttribute('aria-label', `Favorite ${contact.name}`);
+  favorite.setAttribute('aria-pressed', String(contact.isFavorite));
+  favorite.title = contact.isFavorite ? 'Remove from favorites' : 'Add to favorites';
+  favorite.append(icon('star'));
+  favorite.addEventListener('click', () => handlers.favorite(contact));
+  header.append(identity, favorite);
 
   const methods = node('div', 'card-methods');
   for (const { key, icon: methodIcon } of METHOD_TYPES) {
@@ -107,14 +115,46 @@ export function renderMethodFields(container, contact) {
   for (const { key, label, icon: methodIcon, maxLength } of METHOD_TYPES) {
     const section = node('fieldset', 'method-fieldset');
     const legend = node('legend');
-    legend.append(icon(methodIcon), `${label}`);
-    const input = node('input');
-    input.name = key;
-    input.type = key === 'emails' ? 'email' : key === 'phones' ? 'tel' : 'text';
-    input.maxLength = maxLength;
-    input.setAttribute('aria-label', label);
-    input.value = contact?.[key][0] ?? '';
-    section.append(legend, input);
+    legend.append(icon(methodIcon), label);
+    const rows = node('div', 'method-rows');
+    const add = action(`Add ${label}`, 'plus', 'add-method', () => appendRow('').focus());
+
+    function renumber() {
+      for (const [index, row] of Array.from(rows.children).entries()) {
+        const ordinal = `${label} ${index + 1}`;
+        row.querySelector('input').setAttribute('aria-label', ordinal);
+        row.querySelector('button').setAttribute('aria-label', `Remove ${ordinal}`);
+      }
+    }
+
+    function appendRow(value) {
+      const row = node('div', 'method-row');
+      const input = node('input');
+      input.name = key;
+      input.type = { emails: 'email', phones: 'tel' }[key] ?? 'text';
+      input.maxLength = maxLength;
+      input.value = value;
+      const remove = node('button', 'icon-button remove-method');
+      remove.type = 'button';
+      remove.append(icon('close'));
+      remove.addEventListener('click', () => {
+        const next = row.nextElementSibling?.querySelector('input')
+          ?? row.previousElementSibling?.querySelector('input')
+          ?? add;
+        row.remove();
+        renumber();
+        next.focus();
+      });
+      row.append(input, remove);
+      rows.append(row);
+      renumber();
+      return input;
+    }
+
+    for (const value of contact?.[key] ?? []) {
+      appendRow(value);
+    }
+    section.append(legend, rows, add);
     container.append(section);
   }
 }

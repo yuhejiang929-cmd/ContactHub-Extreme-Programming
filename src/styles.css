@@ -336,3 +336,27 @@ dialog::backdrop { background: #211a3b80; }
   .list-toolbar .search { flex: 1; }
   .dialog-header, .dialog-footer, .dialog-content { padding-inline: .85rem; }
 }
+
+.favorite-button[aria-pressed='true'] { background: #fff6dc; color: #93620c; border-color: #f3e4b4; }
+.favorite-button[aria-pressed='true'] .icon { fill: #efba4d; }
+.method-rows { display: grid; gap: .4rem; }
+.method-row { display: flex; align-items: center; gap: .38rem; }
+.remove-method:hover { color: var(--danger); background: #fbeaf0; }
+.add-method {
+  display: inline-flex;
+  gap: .34rem;
+  align-items: center;
+  color: var(--accent-dark);
+  background: var(--accent-light);
+  border: 1px solid #e5dff5;
+  border-radius: 7px;
+  padding: .38rem .55rem;
+  margin-top: .34rem;
+  font-size: .77rem;
+  font-weight: 750;
+}
+.add-method:hover { background: #e6defc; }
+.add-method .icon { width: .87rem; height: .87rem; }
+dialog[open], dialog > form { display: flex; flex-direction: column; min-height: 0; }
+.dialog-header, .dialog-footer { flex: none; }
+.dialog-content { overflow: auto; overscroll-behavior: contain; }
