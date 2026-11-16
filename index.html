@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#24203f">
+  <meta name="description" content="A personal address book with favorites and Excel exchange.">
+  <title>ContactHub</title>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 3h15a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4V3Zm0 5H2m2 4H2m2 4H2"/><circle cx="12" cy="9" r="2"/><path d="M8.5 16a3.5 3.5 0 0 1 7 0"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.9M16 3a4 4 0 0 1 0 8"/><circle cx="9" cy="7" r="4"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 5.88 6.49.94-4.7 4.59 1.11 6.46L12 17.32l-5.8 3.05 1.11-6.46-4.7-4.59 6.49-.94z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12m-4-4 4 4 4-4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 16-1 5 5-1L20 8l-4-4L4 16Zm10-10 4 4m-2-6 1.5-1.5a1.4 1.4 0 0 1 2 0l2 2a1.4 1.4 0 0 1 0 2L20 8"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M6 6l1 14h10l1-14M9 6V3h6v3m-5 4 .3 6m3.7-6-.3 6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A15 15 0 0 1 4 5a1 1 0 0 1 1-1Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-at" viewBox="0 0 24 24"><circle cx="11" cy="12" r="3"/><path d="M14 9v5.5a2 2 0 1 0 4 0v-3a7.5 7.5 0 1 0-5.2 7.1"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v3"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6m-6 4h6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to contacts</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span><span>ContactHub</span></div>
+      <nav class="navigation" aria-label="Contact views">
+        <button class="nav-button" data-view="all" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>All Contacts<span class="nav-count" id="all-count" aria-hidden="true">0</span></button>
+      </nav>
+      <p class="local-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Stored in this browser</p>
+    </aside>
+    <main id="main" class="workspace" tabindex="-1">
+      <header class="workspace-header">
+        <div><h1 id="view-title">All Contacts</h1><p id="view-description">Your address book</p></div>
+        <div class="toolbar">
+          <button id="add-contact" class="button primary"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add Contact</button>
+        </div>
+      </header>
+      <div class="list-toolbar">
+        <label class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="search" type="search" aria-label="Search contacts" placeholder="Search names, phones or emails"></label>
+        <p id="results-count" aria-live="polite"></p>
+      </div>
+      <p id="storage-error" class="feedback error" role="alert" hidden></p>
+      <section id="contacts" class="contact-list" aria-label="Contacts"></section>
+      <section id="empty" class="empty" hidden>
+        <div class="empty-icon" id="empty-icon" aria-hidden="true"></div>
+        <h2 id="empty-title"></h2>
+        <p id="empty-text"></p>
+        <button id="empty-add" class="button secondary">Add your first contact</button>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="contact-form" novalidate>
+      <div class="dialog-header"><h2 id="editor-title">Add Contact</h2><button class="icon-button" type="button" data-close aria-label="Close editor"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <div class="dialog-content">
+        <label class="field">Full name <span class="required" aria-hidden="true">*</span><input name="name" maxlength="120" autocomplete="off" required autofocus placeholder="e.g. Lin Xia"></label>
+        <div id="method-fields"></div>
+        <label class="field">Notes<textarea name="notes" rows="3" maxlength="2000" placeholder="Add a note"></textarea></label>
+        <p class="feedback error" id="editor-error" role="alert" hidden></p>
+      </div>
+      <footer class="dialog-footer"><button type="button" class="button secondary" data-close>Cancel</button><button type="submit" class="button primary">Save Contact</button></footer>
+    </form>
+  </dialog>
+  <dialog id="details" aria-labelledby="detail-title">
+    <div class="dialog-header"><h2 id="detail-title"></h2><button class="icon-button" type="button" data-close aria-label="Close details"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div id="detail-content" class="dialog-content"></div>
+    <footer class="dialog-footer"><button class="button secondary" data-close>Done</button></footer>
+  </dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-message">
+    <div class="dialog-header"><h2 id="delete-title">Delete contact?</h2><button class="icon-button" type="button" data-close aria-label="Close confirmation"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div class="dialog-content"><p id="delete-message"></p><p id="delete-error" class="feedback error" role="alert" hidden></p></div>
+    <footer class="dialog-footer"><button class="button secondary" data-close autofocus>Cancel</button><button class="button danger" id="confirm-delete">Delete Contact</button></footer>
+  </dialog>
+  <div id="notification" class="notification" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
