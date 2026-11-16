@@ -75,6 +75,15 @@ test('T11–T17: real download, fresh-session import, duplicates and invalid fil
   await page.goto('./');
   await page.getByRole('button', { name: 'Export Excel' }).click();
   await expect(page.locator('#notification')).toHaveText('There are no contacts to export.');
+  await page.getByRole('button', { name: 'Import Excel' }).click();
+  const templateEvent = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download Template' }).click();
+  const template = await templateEvent;
+  expect(template.suggestedFilename()).toBe('contacthub-template.xlsx');
+  const templateWorkbook = new ExcelJS.Workbook();
+  await templateWorkbook.xlsx.readFile(await template.path());
+  expect(templateWorkbook.getWorksheet('Contacts').getCell('A1').value).toBe('Name');
+  await page.getByRole('dialog').getByRole('button', { name: 'Cancel' }).click();
   await addContact(page, detailedContact);
   await addContact(page, { name: 'Amira Patel' });
   await cardFor(page, detailedContact.name).getByRole('button', { name: `Favorite ${detailedContact.name}` }).click();
