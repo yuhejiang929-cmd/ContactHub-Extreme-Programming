@@ -9,6 +9,8 @@
 | `npm run build` | 退出码 0，生成 `dist/`。按需加载的 Excel 块约 947 kB，gzip 约 275 kB，触发 Vite 体积提示 |
 | `CONTACTHUB_CHROMIUM_CHANNEL=chrome npm run test:e2e` | 4 个浏览器测试全部通过 |
 
+独立克隆了 GitHub 上的功能分支提交 `005406c`，重新执行 `npm ci`、lint、20 项 Vitest 和生产构建，均通过。发布后在匿名 Chrome 会话访问公网部署，4 项端到端测试再次全部通过。 [公网测试入口](https://yuhejiang929-cmd.github.io/ContactHub-Extreme-Programming/)
+
 ## 要求覆盖
 
 | 编号 | 步骤 | 预期 | 实际 |
@@ -39,6 +41,6 @@
 ## 问题与范围
 
 - 依赖初装遇到 npm 的可选对等依赖解析错误，固定 Vitest 4.0 系列后安装成功。
-- 首轮 Chrome 检查发现站点资源 404。补上应用图标后最终浏览器检查通过。
+- 首轮 Chrome 检查发现站点资源 404。补上应用图标后最终浏览器检查通过。首轮录屏脚本等待通知消失超过了默认断言时限，改用刷新同时验证持久化后，成功录制并通读解码完整 MP4。
 - 依赖审计发现 fflate 的异常 ZIP64 解析问题，已升级至 0.8.3。ExcelJS 4.4.0 依赖的 uuid 仍有中等级通告，通告针对 v3、v5 和 v6 的外部缓冲区写入。安装包源码只调用 v4。 [fflate 通告](https://github.com/advisories/GHSA-px8p-9vwx-vf98) · [uuid 通告](https://github.com/advisories/GHSA-w5hq-g745-h8pq)
 - Safari、Firefox、移动真机与 Linux Nginx 实机部署未运行。公网静态托管另看部署文档。

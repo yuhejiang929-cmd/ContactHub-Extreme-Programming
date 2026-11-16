@@ -81,7 +81,7 @@ ContactHub 是一个浏览器内运行的通讯录。用户可以维护联系人
 | 验收范围 | 实际结果 |
 | --- | --- |
 | Vitest 联系人模型及 Excel 编解码 | 20 项通过 |
-| Playwright 生产预览 Chrome 操作 | 4 项通过 |
+| Playwright Chrome 操作 | 本地生产预览与公网 Pages 各 4 项通过 |
 | ESLint 和 Vite 生产构建 | 均成功 |
 | XLSX 往返 | 中文、前导零、国际号码、同类多值和收藏状态一致 |
 | 异常输入 | 无效文件保留已有联系人，有效行可经确认追加 |
@@ -107,7 +107,7 @@ ContactHub 是一个浏览器内运行的通讯录。用户可以维护联系人
 
 完整运行视频包含打开应用、新增、收藏和取消收藏、详情、导出、删除并导回、搜索、编辑和刷新。可上传 [本地 MP4](demo/contacthub-demo.mp4)。
 
-**视频公开链接**　TODO 录制资产发布后填写。
+**视频公开链接**　[下载完整演示 MP4](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/releases/download/v1.0.0/contacthub-demo.mp4)。
 
 ## 9. GitHub Repository and Commits
 
@@ -117,10 +117,14 @@ ContactHub 是一个浏览器内运行的通讯录。用户可以维护联系人
 | 代码规范 | [CODING_STANDARDS.md](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/blob/main/docs/CODING_STANDARDS.md) |
 | 功能分支 | `feature/extreme-programming-address-book` |
 | Pull Request | [PR #1](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/pull/1) |
-| GitHub Release | TODO 待写入实测链接 |
-| 云访问地址 | TODO 待写入实测链接 |
+| GitHub Release | [v1.0.0](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/releases/tag/v1.0.0) |
+| 云访问地址 | [GitHub Pages](https://yuhejiang929-cmd.github.io/ContactHub-Extreme-Programming/)，静态托管是否满足云服务器加分条件待课程确认 |
 
-TODO 在发布前填入 [真实提交统计](GITHUB_EVIDENCE.md)，并上传真实 GitHub 提交历史截图。课程允许自建仓库。代码和文档由 Codex 协助实现，Git 作者记录同时用于说明本轮自动化开发和学生实际参与。
+PR #1 含 5 次 Codex 开发提交。发布标签 v1.0.0 的历史含 6 次 Codex 非合并提交及 1 次 GitHub 生成的合并提交，合并作者显示为 yuhejiang929-cmd。课程允许自建，基线由本项目创建。学生实际参与以本人复核和开发记录为准。
+
+![GitHub PR 提交历史](screenshots/07-github-pr-commits.png)
+
+[发布截图](screenshots/08-github-release.png) · [统计口径](GITHUB_EVIDENCE.md)
 
 ## 10. Team Collaboration
 

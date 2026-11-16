@@ -2,7 +2,9 @@
 
 ## 当前公网状态
 
-GitHub Pages 部署和外网访问验收待记录。Pages 公开静态托管可供演示，额外 15 分是否接受这种托管需要课程确认。
+GitHub Actions 已构建并部署 v1.0.0 对应的应用提交 `9a0a0ee`。额外 15 分是否接受这种静态托管需要课程确认。 [公众访问地址](https://yuhejiang929-cmd.github.io/ContactHub-Extreme-Programming/) · [部署工作流](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/actions/runs/43835187723)
+
+从公网匿名请求首页返回 HTTP 200。对该地址运行 4 项 Chrome 测试，联系人、收藏、下载、导入和窄屏流程全部通过。
 
 ## GitHub Pages
 

@@ -17,11 +17,11 @@ Software Engineering (FZU–MU) Extreme Programming 通讯录。初始目录为�
 
 ## C. 实际执行的测试
 
-`npm run lint` 成功，`npm test` 20 项通过，`npm run build` 成功，`CONTACTHUB_CHROMIUM_CHANNEL=chrome npm run test:e2e` 4 项通过。Chrome 检查覆盖刷新、窄屏、控制台及真实下载再上传。最终本地自动化无失败。详见 [测试报告](docs/TEST_REPORT.md)。
+`npm run lint` 成功，`npm test` 20 项通过，`npm run build` 成功，`CONTACTHUB_CHROMIUM_CHANNEL=chrome npm run test:e2e` 4 项通过。Chrome 检查覆盖刷新、窄屏、控制台及真实下载再上传。最终本地自动化无失败。另从 GitHub 干净克隆验证依赖安装、lint、Vitest 和构建；公网部署再跑 4 项 Chrome 测试全部通过。详见 [测试报告](docs/TEST_REPORT.md)。
 
 ## D. Git 与 GitHub 状态
 
-仓库已创建，功能分支为 `feature/extreme-programming-address-book`，目标为同仓库 `main`。提交来自实际工作节点，使用 Codex 署名。实际提交数量、PR、Release 及远程证据见 [GitHub 记录](docs/GITHUB_EVIDENCE.md)。
+公开仓库已创建。PR #1 将功能分支合入 `main`，保留 5 次 Codex 功能提交。发布标签 v1.0.0 指向 `9a0a0ee`，共有 6 次 Codex 非合并提交和 1 次 GitHub 合并提交。GitHub 生成的合并作者显示为 yuhejiang929-cmd。 [仓库](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming) · [PR #1](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/pull/1) · [Release](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/releases/tag/v1.0.0) · [截图与统计](docs/GITHUB_EVIDENCE.md)
 
 ## E. 文件清单
 
@@ -33,7 +33,7 @@ Software Engineering (FZU–MU) Extreme Programming 通讯录。初始目录为�
 
 ## F. 云部署状态
 
-静态托管的实际状态见 [部署文档](docs/DEPLOYMENT.md)。额外 15 分是否接受静态托管需核实。阿里云或华为云实例没有可用部署授权，本地准备了 Linux Nginx 方案。联系人保存在各浏览器自己的 localStorage。
+GitHub Pages 静态网站已部署并通过公网验证。额外 15 分是否接受静态托管需核实。阿里云或华为云实例没有可用部署授权，项目带有 Linux Nginx 方案。联系人保存在各浏览器自己的 localStorage。 [公网应用](https://yuhejiang929-cmd.github.io/ContactHub-Extreme-Programming/) · [部署文档](docs/DEPLOYMENT.md)
 
 ## G. 学生需完成的步骤
 
@@ -61,7 +61,7 @@ npm run dev
 
 ## J. 结论
 
-- **已实现并验证**　联系人与收藏、动态多联系方式、Excel、生产构建、Chrome 实际操作与移动宽度。
+- **已实现并验证**　联系人与收藏、动态多联系方式、Excel、生产构建、Chrome、GitHub Release 资产与公网 Pages。
 - **已实现但未在目标环境验证**　Linux Nginx 脚本与配置。
 - **尚未完成**　课程账号上的文章发布和作业提交，云加分口径确认。
 - **学生本人操作**　个人学习与复核、真实贡献材料、PSP、博客审核和提交。

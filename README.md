@@ -2,6 +2,8 @@
 
 ContactHub 是 Software Engineering (FZU–MU) 极限编程作业的浏览器通讯录。支持联系人管理、收藏、同类多联系方式与真实 Excel 工作簿导入导出。课程截止为 2026 年 11 月 17 日 23:59（北京时间）。[作业原帖](https://bbs.csdn.net/topics/620593436)
 
+[打开在线通讯录](https://yuhejiang929-cmd.github.io/ContactHub-Extreme-Programming/) · [v1.0.0](https://github.com/yuhejiang929-cmd/ContactHub-Extreme-Programming/releases/tag/v1.0.0)
+
 ![ContactHub 桌面端运行截图](docs/screenshots/01-home.png)
 
 ## 启动与验证
